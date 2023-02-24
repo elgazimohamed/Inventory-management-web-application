@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"  >
+    <h:head>
+        <title>Modifier la commande</title>
+        <style>
+        	* {
+        		padding: 0;
+        		margin: 0;
+        	}
+        	body {
+        		background-color : gray;
+        	}
+        </style>
+    </h:head>
+    <h:body>
+		<b:navBar brandHref="#" fluid="true" style="background-color: purple; color: white">
+		  <b:navbarLinks style="font-size:25px;">
+		  	<b:navLink value="Home" href="index.xhtml" icon-awesome="fa-home" style="color:white;"></b:navLink>
+		    <b:dropMenu value="Gestion du Stock" iconAwesome="fa-database" style="color:white;font-size:25px;">
+		      <b:navLink value="Stock" href="index.xhtml" style="font-size:20px;"></b:navLink>
+		      <b:navLink value="Etat du stock" href="etat_stock.xhtml" style="font-size:20px;"></b:navLink>
+		    </b:dropMenu>
+		    <b:dropMenu value="Gestion d'approvisionnement" iconAwesome="fa-truck" style="color:white;font-size:25px;">
+		        <b:navLink value="Commandes" href="commandes.xhtml" style="font-size:20px;"></b:navLink>
+		        <b:navLink value="Etat des commandes" href="etat_commandes.xhtml" style="font-size:20px;"></b:navLink>
+		    </b:dropMenu>
+		  </b:navbarLinks>
+	    </b:navBar>
+		  <br/><br/>
+      <b:container fluid="true" style="width:800px;color:purple;font-size:17px;">	
+      	<b:panel collapsible="false" >
+		  <b:form>
+		  
+  			<b:inputText id="codeArt" value="#{userBean.ap.codeArt}" label="Code d'article" required="true" readonly="true"/>
+  			<b:message for="@previous" />
+ 			<br/>
+ 			
+  			<b:inputText id="qteCommande" value="#{userBean.qteCommande}" label="Quantité d'article" required="true" />
+  			<b:message for="@previous" />
+  			<br/>
+  			
+  			<b:inputText id="datePrevueLivraison" value="#{userBean.datePrevueLivraison}" label="Date Prevue de livraison" a:placeholder="dd-mm-yyyy" required="true" />
+  			<b:message for="@previous" />
+  			<br/>
+ 			<center>
+  				<b:commandButton value="Commander" action="#{userBean.EnregistrerCommande()}" style="font-size:20px;" look="success"/>
+  			</center>
+		  </b:form>
+		</b:panel>
+	  </b:container>
+	</h:body> 
+</html>
+	  

@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough" >
+    <h:head>
+        <title>Commades</title>
+        <style>
+        	* {
+        		padding: 0;
+        		margin: 0;
+        	}
+        	body {
+        		background-color : gray;
+        	}
+        </style>
+    </h:head>
+    <h:body>
+		<b:navBar brandHref="#" fluid="true" style="background-color: purple; color: white">
+		  <b:navbarLinks style="font-size:25px;">
+		  	<b:navLink value="Home" href="index.xhtml" icon-awesome="fa-home" style="color:white;"></b:navLink>
+		    <b:dropMenu value="Gestion du Stock" iconAwesome="fa-database" style="color:white;font-size:25px;">
+		      <b:navLink value="Stock" href="index.xhtml" style="font-size:20px;"></b:navLink>
+		      <b:navLink value="Etat du stock" href="etat_stock.xhtml" style="font-size:20px;"></b:navLink>
+		    </b:dropMenu>
+		    <b:dropMenu value="Gestion d'approvisionnement" iconAwesome="fa-truck" style="color:white;font-size:25px;">
+		        <b:navLink value="Commandes" href="commandes.xhtml" style="font-size:20px;"></b:navLink>
+		        <b:navLink value="Etat des commandes" href="etat_commandes.xhtml" style="font-size:20px;"></b:navLink>
+		    </b:dropMenu>
+		  </b:navbarLinks>
+	    </b:navBar>
+		  <br/>
+      <b:container fluid="true" style="width:800px;color:purple;font-size:17px;">	
+      	<b:panel collapsible="false" >
+		  <b:form id="form2">
+		  
+  			<b:inputText id="codeArt" value="#{userBean.codeArt}" label="Code d'article" required="true" />
+  			<b:message for="@previous" />
+ 			<br/>
+ 			
+  			<b:inputText id="qteArt" value="#{userBean.qteCommande}" label="Quantité de commande" required="true" />
+  			<b:message for="@previous" />
+  			<br/>
+  			
+  			<b:inputText id="nomArt" value="#{userBean.datePrevueLivraison}" label="Date Preuve de livraison" required="true" a:placeholder="dd-mm-yyyy" />
+  			<b:message for="@previous" />
+  			<br/>
+  			
+ 			<center>
+  				<b:commandButton action="#{userBean.EnregistrerCommande()}" value="Enregister" look="primary" style="font-size:20px;margin-right:5px;" />
+  				<b:commandButton value="réinitialiser" onclick="reset('form2')" style="font-size:20px;" look="primary" />
+  			</center>
+		  </b:form>
+		</b:panel>
+	  </b:container>
+	  	<b:container style="width:1200px;">
+  			<center><h1>La liste des commandes</h1></center>
+	  		<b:panel collapsible="false" showCollapseLink="true">
+			  <h:form>
+				  <b:dataTable value="#{userBean.AfficherApprovisionement()}" selectionMode="single"
+						 rowKey="#{ap.codeArt}" var="ap" row="5" style="font-size:17px;">
+				      <b:dataTableColumn value="#{ap.codeArt}" label="Code d'article"/>
+				      <b:dataTableColumn value="#{ap.qteCommande}" label="Quantité de commande" />
+				      <b:dataTableColumn value="#{ap.datePrevueLivraison}" label="Date preuve de livraison" />
+					  <b:dataTableColumn label="">
+				    		<center><h:commandLink type="button" value="Modifier" style="border: 1px solid #32CD32;padding: 2px 12px 2px 12px;background-color:#32CD32;color:white;border-radius:5px"
+					        action="#{userBean.editCommande(ap)}" /></center>
+					  </b:dataTableColumn>
+				      <b:dataTableColumn label="">
+				    	    <center><h:commandLink type="button" value="Supprimer" style="border: 1px solid #FF00;padding: 2px 8px 2px 8px;background-color:#FF0000;color:white;border-radius:5px"
+					        action="#{userBean.deleteCommande(ap)}" onclick="return confirm('Vous voulez vraiment supprimer cette ligne ?')" /></center>
+					  </b:dataTableColumn>
+				  </b:dataTable>
+	          </h:form>
+	  		</b:panel>
+	  	</b:container>
+	  	<h:outputScript library="jquery" name="jquery-3.6.0.js" /> 
+	  	<h:outputScript library="jquery" name="index.js" /> 
+    </h:body>
+</html>

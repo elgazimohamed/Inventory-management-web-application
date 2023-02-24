@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" >
+    <h:head>
+        <title>Etat des commandes</title>
+        <style>
+        	* {
+        		padding: 0;
+        		margin: 0;
+        	}
+        	body {
+        		background-color : gray;
+        	}
+        </style>
+    </h:head>
+    <h:body>
+		<b:navBar brandHref="#" fluid="true" style="background-color: purple; color: white">
+		  <b:navbarLinks style="font-size:25px;">
+		  	<b:navLink value="Home" href="index.xhtml" icon-awesome="fa-home" style="color:white;"></b:navLink>
+		    <b:dropMenu value="Gestion du Stock" iconAwesome="fa-database" style="color:white;font-size:25px;">
+		      <b:navLink value="Stock" href="index.xhtml" style="font-size:20px;"></b:navLink>
+		      <b:navLink value="Etat du stock" href="etat_stock.xhtml" style="font-size:20px;"></b:navLink>
+		    </b:dropMenu>
+		    <b:dropMenu value="Gestion d'approvisionnement" iconAwesome="fa-truck" style="color:white;font-size:25px;">
+		        <b:navLink value="Commandes" href="commandes.xhtml" style="font-size:20px;"></b:navLink>
+		        <b:navLink value="Etat des commandes" href="etat_commandes.xhtml" style="font-size:20px;"></b:navLink>
+		    </b:dropMenu>
+		  </b:navbarLinks>
+	    </b:navBar>
+	    	<h:form>
+	    		<center><h1>L'état des commandes</h1></center>
+	  			<br/>
+	  			<center>
+	  				<div style="width:250px;height:20px;font-size:25px;backgound-color:red;color:white">
+	  					<h:link href="./Generer_Rapport" value="Télécharger le PDF" style="color:red"/>
+	  				</div>
+	  			</center>
+	  			<br /><br />
+			</h:form>
+	  <b:container>
+	  		<b:panel collapsible="false" showCollapseLink="true" look="primary" style="font-size:18px" >
+			  <h:form>
+				  <b:dataTable value="#{userBean.AfficherApprovisionement()}" selectionMode="single"
+						 rowKey="#{ap.codeArt}" var="ap" row="5">
+				      <b:dataTableColumn value="#{ap.codeArt}" label="Code d'article"/>
+				      <b:dataTableColumn value="#{ap.qteCommande}" label="Quantité de commande" />
+				      <b:dataTableColumn value="#{ap.datePrevueLivraison}" label="Date preuve de livraison" />
+				  </b:dataTable>
+	          </h:form>
+	  		</b:panel>
+	  </b:container>
+    </h:body>
+</html>

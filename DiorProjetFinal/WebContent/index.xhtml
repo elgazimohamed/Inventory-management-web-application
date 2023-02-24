@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" >
+    <h:head>
+        <title>Gestion du Stock</title>
+        <style>
+        	* {
+        		padding: 0;
+        		margin: 0;
+        	}
+        	body {
+        		background-color : gray;
+        	}
+        </style>
+        
+    </h:head>
+    <h:body>
+		<b:navBar brandHref="#" fluid="true" style="background-color: purple; color: white">
+		  <b:navbarLinks style="font-size:25px;">
+		  	<b:navLink value="Home" href="index.xhtml" icon-awesome="fa-home" style="color:white;"></b:navLink>
+		    <b:dropMenu value="Gestion du Stock" iconAwesome="fa-database" style="color:white;font-size:25px;">
+		      <b:navLink value="Stock" href="index.xhtml" style="font-size:20px;"></b:navLink>
+		      <b:navLink value="Etat du stock" href="etat_stock.xhtml" style="font-size:20px;"></b:navLink>
+		    </b:dropMenu>
+		    <b:dropMenu value="Gestion d'approvisionnement" iconAwesome="fa-truck" style="color:white;font-size:25px;">
+		        <b:navLink value="Commandes" href="commandes.xhtml" style="font-size:20px;"></b:navLink>
+		        <b:navLink value="Etat des commandes" href="etat_commandes.xhtml" style="font-size:20px;"></b:navLink>
+		    </b:dropMenu>
+		  </b:navbarLinks>
+	    </b:navBar>
+		  
+      <b:container fluid="true" style="width:800px;color:purple;font-size:17px;">	
+      	<b:panel collapsible="false" >
+		  <b:form id="form1">
+		  
+  			<b:inputText id="codeArt" value="#{userBean.codeArt}" label="Code d'article" required="true" />
+  			<b:message for="@previous" />
+ 
+ 			
+  			<b:inputText id="qteArt" value="#{userBean.qteArt}" label="Quantité d'article" required="true" />
+  			<b:message for="@previous" />
+  			
+  			<b:inputText id="nomArt" value="#{userBean.nomArt}" label="Nom d'article" required="true" />
+  			<b:message for="@previous" />
+  			
+  			<b:inputText id="descArt" value="#{userBean.descArt}" label="Description sur l'article" required="true"  />
+  			<b:message for="@previous" />
+  			
+  			<b:inputText id="prixArt" value="#{userBean.prixArt}" label="Prix d'article" required="true"  />
+  			<b:message for="@previous" />  			
+ 			
+ 			<center>
+  				<b:commandButton action="#{userBean.Add()}" value="Enregister" style="font-size:19px;margin-right:5px;" look="primary" type="submit" />
+  				<b:commandButton value="réinitialiser" onclick="reset('form1')" style="font-size:19px;" look="primary" />
+  			</center>
+		  </b:form>
+		</b:panel>
+	  </b:container>
+	  	<b:container style="width:1250px;">
+  			<center><h1>La liste des articles du stock</h1></center>
+	  		<b:panel collapsible="false" showCollapseLink="true" >
+			  <h:form>
+				  <b:dataTable value="#{userBean.Afficher()}" selectionMode="single"
+						 rowKey="#{art.codeArt}" var="art" row="5" style="font-size:17px;">
+				      <b:dataTableColumn value="#{art.codeArt}" label="Code d'article"/>
+				      <b:dataTableColumn value="#{art.qteArt}" label="Quantité d'article" />
+				      <b:dataTableColumn value="#{art.nomArt}" label="Nom d'article" />
+				      <b:dataTableColumn value="#{art.descArt}" label="description d'article" />
+				      <b:dataTableColumn value="#{art.prixArt}" label="prix d'article" />
+				      <b:dataTableColumn label="">
+				           <center><h:commandLink type="button" value="Commander" style="border: 1px solid #1E90FF;padding: 2px 8px 2px 8px;background-color:#1E90FF;color:white;border-radius:5px"
+					        action="#{userBean.commander(art)}" /></center>
+					  </b:dataTableColumn>
+					  <b:dataTableColumn label="">
+				    		<center><h:commandLink type="button" value="Modifier" style="border: 1px solid #32CD32;padding: 2px 12px 2px 12px;background-color:#32CD32;color:white;border-radius:5px"
+					        action="#{userBean.edit(art)}" /></center>
+					  </b:dataTableColumn>
+				      <b:dataTableColumn label="">
+				    	    <center><h:commandLink type="button" value="Supprimer" style="border: 1px solid #FF00;padding: 2px 8px 2px 8px;background-color:#FF0000;color:white;border-radius:5px"
+					        action="#{userBean.delete(art)}" onclick="return confirm('Vous voulez vraiment supprimer cette ligne ?')" /></center>
+					  </b:dataTableColumn>
+				  </b:dataTable>
+	          </h:form>
+	  		</b:panel>
+	  	</b:container>
+	  	<h:outputScript library="jquery" name="jquery-3.6.0.js" /> 
+	  	<h:outputScript library="jquery" name="index.js" /> 
+    </h:body>
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#index.xhtml" PATH="/index.xhtml"
+  SHAPE="272,152,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#index.xhtml:0" NAME="item"
+   PATH="/index.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="modifier_article::#modifier_article.xhtml"
+    NAME="output1" PATH="/modifier_article.xhtml"
+    TARGET="rules:#modifier_article.xhtml" TITLE="modifier_article" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="commander::#faire_une_commande.xhtml"
+    NAME="output2" PATH="/faire_une_commande.xhtml"
+    TARGET="rules:#faire_une_commande.xhtml" TITLE="commander" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="success::#ajoute_article_succes.xhtml"
+    NAME="output" PATH="/ajoute_article_succes.xhtml"
+    TARGET="rules:#ajoute_article_succes.xhtml" TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#modifier_article.xhtml"
+  PATH="/modifier_article.xhtml" SHAPE="606,130,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#modifier_article.xhtml:0" NAME="item"
+   PATH="/modifier_article.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="save_article::#index.xhtml" NAME="output"
+    PATH="/index.xhtml" TARGET="rules:#index.xhtml" TITLE="save_article" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#commandes.xhtml" PATH="/commandes.xhtml"
+  SHAPE="296,272,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#commandes.xhtml:0" NAME="item"
+   PATH="/commandes.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="modifier_commande::#modifier_commande.xhtml"
+    NAME="output" PATH="/modifier_commande.xhtml"
+    TARGET="rules:#modifier_commande.xhtml" TITLE="modifier_commande" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#modifier_commande.xhtml"
+  PATH="/modifier_commande.xhtml" SHAPE="640,272,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#modifier_commande.xhtml:0" NAME="item"
+   PATH="/modifier_commande.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="save_commande::#commandes.xhtml"
+    NAME="output" PATH="/commandes.xhtml"
+    TARGET="rules:#commandes.xhtml" TITLE="save_commande" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#faire_une_commande.xhtml"
+  PATH="/faire_une_commande.xhtml" SHAPE="104,48,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#faire_une_commande.xhtml:0" NAME="item"
+   PATH="/faire_une_commande.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="success::#ajoute_commande_succes.xhtml"
+    NAME="output" PATH="/ajoute_commande_succes.xhtml"
+    TARGET="rules:#ajoute_commande_succes.xhtml" TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#ajoute_article_succes.xhtml"
+  PATH="/ajoute_article_succes.xhtml" SHAPE="375,54,0,0"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#ajoute_commande_succes.xhtml"
+  PATH="/ajoute_commande_succes.xhtml" SHAPE="48,296,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+</PROCESS>
